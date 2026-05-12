@@ -54,6 +54,37 @@ The nose highlights a mellow pot whiskey with toasted wood and sherry undertones
 
 **Channel / program:** If you use **local inventory**, keep your existing local settings; the **link** still helps Google match the landing page.
 
+## Fix: “Missing local inventory data” (Merchant Center)
+
+Google expects **every local-eligible product** to have a matching row in **local product inventory** (per physical store): same **`id`** as your primary product feed (**case-sensitive**), plus **`store_code`**, **`quantity`**, and **`availability`**.
+
+### 1. Get your real `store_code`
+
+1. Merchant Center → **Settings** → **Business information** → **Stores** (or linked **Google Business Profile**).
+2. Open the store linked to this merchant account.
+3. Copy the **store code** exactly as Google shows it (**case-sensitive** — must match **Google Business Profile**).
+
+### 2. Add a **Local product inventory** feed (not supplemental for wrong type)
+
+1. **Products** → **Feeds** (or **Data sources**).
+2. **Add feed** → choose **Local product inventory** (wording may be “Local inventory” / “Local product inventory”).
+3. Upload a **.txt** or **.tsv** file (tab-delimited). Do **not** use plain `.csv` unless you convert to tab-delimited per Google’s help.
+4. Use the template in this repo: **`mc-local-inventory-template.tsv`**
+   - Replace **`REPLACE_WITH_YOUR_GBP_STORE_CODE`** with your real store code from step 1.
+   - Keep **`id`** = **`JAMESON-IRISH-WHISKEY-200ML`** (must match the **offer id / id** in your primary product data exactly).
+5. **Fetch** / wait for processing. Recheck **Needs attention**.
+
+### 3. Common mistakes
+
+| Problem | Fix |
+|--------|-----|
+| `id` does not match primary feed | Use the **same** offer id as in your product feed (including upper/lower case). |
+| Wrong `store_code` | Must match linked Business Profile store code **exactly**. |
+| No Business Profile linked | Link stores under **Business information** → **Stores**. |
+| Products opted into local but not sold in store | Either add inventory rows **or** adjust **marketing methods** / program so online-only items are not required to have store inventory (see Google’s “Physical store marketing methods” in feed **Source settings**). |
+
+Official help: [Troubleshoot local product data](https://support.google.com/merchants/topic/7293661) (search “missing inventory data” on Merchant Center Help).
+
 ## Merchant Center product links
 
 Current product URL (matches `sku` in `data/products.json`):
