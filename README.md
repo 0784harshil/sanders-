@@ -69,8 +69,9 @@ Use the value from **Google Business Profile → Advanced settings → Store cod
 1. **Products** → **Feeds** (or **Data sources**).
 2. **Add feed** → choose **Local product inventory** (wording may be “Local inventory” / “Local product inventory”).
 3. Upload a **.txt** or **.tsv** file (tab-delimited). Do **not** use plain `.csv` unless you convert to tab-delimited per Google’s help.
-4. Use **`mc-local-inventory-template.tsv`** from this repo (already uses **`store_code`** `04856394418950437793` and **`id`** `JAMESON-IRISH-WHISKEY-200ML`). If your Merchant Center **offer id** differs, edit the **`id`** column to match **exactly** (case-sensitive).
-5. **Fetch** / wait for processing. Recheck **Needs attention**.
+4. Use **`mc-local-inventory-template.tsv`** from this repo (tab-separated). It includes **`price`** and uses **`in_stock`** (underscore — **not** `in stock` with a space; wrong availability text often results in **0 products** processed).
+5. When creating the source, pick type **Local inventory** / **Local product inventory** — not a normal “products” primary feed.
+6. **Fetch** / wait for processing. The feed’s **Products** count should become **1** (or more). If it stays **0**, open the feed → **Diagnostics** / **Issues** for the error row.
 
 ### 3. Common mistakes
 
@@ -78,6 +79,7 @@ Use the value from **Google Business Profile → Advanced settings → Store cod
 |--------|-----|
 | `id` does not match primary feed | Use the **same** offer id as in your product feed (including upper/lower case). |
 | Wrong `store_code` | Must match linked Business Profile store code **exactly**. |
+| Feed shows **0 products** after upload | Wrong delimiter (must be **tab**), wrong feed type, or bad **`availability`** value — use **`in_stock`** not `in stock`. Open feed **Issues** for the exact error. |
 | No Business Profile linked | Link stores under **Business information** → **Stores**. |
 | Products opted into local but not sold in store | Either add inventory rows **or** adjust **marketing methods** / program so online-only items are not required to have store inventory (see Google’s “Physical store marketing methods” in feed **Source settings**). |
 
