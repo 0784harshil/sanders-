@@ -4,7 +4,11 @@
   var params = new URLSearchParams(window.location.search);
   var sku = params.get('sku');
   var root = document.getElementById('root');
-  var metaDesc = document.getElementById('meta-desc');
+  var metaDesc =
+    document.getElementById('meta-desc') ||
+    document.querySelector('meta[name="description"]');
+
+  if (!root) return;
 
   if (!MC) {
     root.innerHTML = '<p class="meta">Missing scripts.</p>';
@@ -67,22 +71,61 @@
         return;
       }
 
+      var returnsUrl = MC.absoluteUrl(site, '/returns.html');
+
+      root.innerHTML =
+        '<div class="layout">' +
+        '<div><img src="' +
+        MC.esc(p.image) +
+        '" alt="' +
+        MC.esc(p.title) +
+        '" width="600" height="600" loading="eager" /></div>' +
+        '<div>' +
+        '<h1>' +
+        MC.esc(p.title) +
+        '</h1>' +
+        '<p class="price">' +
+        MC.esc(p.currency || 'USD') +
+        ' ' +
+        MC.esc(p.price) +
+        '</p>' +
+        '<p class="meta">Availability (must match Merchant Center): <strong>' +
+        MC.esc(p.availability) +
+        '</strong></p>' +
+        '<p class="meta">Brand: <strong>' +
+        MC.esc(p.brand) +
+        '</strong></p>' +
+        '<div class="policy-prose"><p>' +
+        MC.esc(p.description) +
+        '</p></div>' +
+        '<p class="meta">Offer ID / SKU: <code>' +
+        MC.esc(p.sku) +
+        '</code></p>' +
+        '<p class="meta"><a href="' +
+        MC.esc(returnsUrl) +
+        '">Return policy</a> · <a href="' +
+        MC.esc(MC.absoluteUrl(site, '/shipping.html')) +
+        '">Shipping information</a></p>' +
+        '</div></div>';
+      root.setAttribute('data-loaded', '1');
+
       MC.injectVerificationMeta(site);
 
       var canonical = MC.absoluteUrl(site, '/product.html?sku=' + encodeURIComponent(p.sku));
       MC.setCanonical(canonical);
-      metaDesc.setAttribute('content', p.description);
+      if (metaDesc) metaDesc.setAttribute('content', p.description);
       document.title = p.title + ' — ' + site.business_name;
 
-      MC.setOgTags({
-        title: p.title,
-        description: p.description,
-        image: p.image,
-        url: canonical,
-        type: 'product'
-      });
+      try {
+        MC.setOgTags({
+          title: p.title,
+          description: p.description,
+          image: p.image,
+          url: canonical,
+          type: 'product'
+        });
+      } catch (e1) {}
 
-      var returnsUrl = MC.absoluteUrl(site, '/returns.html');
       var origin = site.canonical_origin.replace(/\/$/, '');
 
       var offer = {
@@ -123,7 +166,9 @@
         offers: offer
       };
 
-      MC.injectJsonLd('ld-product', productLd);
+      try {
+        MC.injectJsonLd('ld-product', productLd);
+      } catch (e2) {}
 
       var crumbs = {
         '@context': 'https://schema.org',
@@ -149,44 +194,9 @@
           }
         ]
       };
-      MC.injectJsonLd('ld-breadcrumb', crumbs);
-
-      root.innerHTML =
-        '<div class="layout">' +
-        '<div><img src="' +
-        MC.esc(p.image) +
-        '" alt="' +
-        MC.esc(p.title) +
-        '" width="600" height="600" loading="eager" /></div>' +
-        '<div>' +
-        '<h1>' +
-        MC.esc(p.title) +
-        '</h1>' +
-        '<p class="price">' +
-        MC.esc(p.currency || 'USD') +
-        ' ' +
-        MC.esc(p.price) +
-        '</p>' +
-        '<p class="meta">Availability (must match Merchant Center): <strong>' +
-        MC.esc(p.availability) +
-        '</strong></p>' +
-        '<p class="meta">Brand: <strong>' +
-        MC.esc(p.brand) +
-        '</strong></p>' +
-        '<div class="policy-prose"><p>' +
-        MC.esc(p.description) +
-        '</p></div>' +
-        '<p class="meta">Offer ID / SKU: <code>' +
-        MC.esc(p.sku) +
-        '</code></p>' +
-        '<p class="meta"><a href="' +
-        MC.esc(returnsUrl) +
-        '">Return policy</a> · <a href="' +
-        MC.esc(MC.absoluteUrl(site, '/shipping.html')) +
-        '">Shipping information</a></p>' +
-        '</div></div>';
-
-      root.setAttribute('data-loaded', '1');
+      try {
+        MC.injectJsonLd('ld-breadcrumb', crumbs);
+      } catch (e3) {}
     })
     .catch(function () {
       root.innerHTML =
