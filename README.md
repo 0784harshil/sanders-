@@ -29,39 +29,36 @@ Optional: **`gtin`** (digits only) when your feed includes a GTIN.
 
 Do this **in Google Merchant Center** (we cannot access your account):
 
-1. **Products** → select items you do not want → **Remove** / **Delete** (or use **Feeds** to replace the feed with a single row — depends how you ingest today).
-2. **Add** one product (manual, supplemental feed, or API) using the values below **character-for-character** where applicable.
+1. **Products** → remove other items if you only want this test listing.
+2. **Add** one product using the values below so they match **`data/products.json`** after deploy.
 
-### Paste these values (must match `data/products.json`)
+### Paste these values (must match the site)
 
 | GMC field | Value |
 |-----------|--------|
-| **id** / **offer id** | `SL-10001` |
-| **title** | `Sanders Select Bourbon 750ml` |
-| **description** | Same long paragraph as in `data/products.json` (open the file or the live product page after deploy). |
+| **id** / **offer id** | `JAMESON-IRISH-WHISKEY-200ML` |
+| **title** | `Jameson Irish Whiskey 200 ml` |
+| **link** | `https://sanders-peach.vercel.app/product.html?sku=JAMESON-IRISH-WHISKEY-200ML` |
+| **image link** | `https://sanders-peach.vercel.app/images/jameson-irish-whiskey-200ml.png` |
+| **price** | `9.99 USD` |
+| **availability** | `in stock` |
+| **condition** | `new` |
+| **brand** | `Jameson` |
+| **identifier exists** | `no` (unless you add a real **GTIN** in JSON and in GMC) |
 
 **Exact description (copy for GMC):**
 
 ```
-750ml bottle of Sanders Select Bourbon sold at Sanders Liquor. Price, image, and availability on this page match our Google Merchant Center listing. Government warning: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems. Must be 21 or older; valid ID required at pickup.
+The nose highlights a mellow pot whiskey with toasted wood and sherry undertones. The taste is smooth and sweet with mild, woody and nutty notes, with an incredibly smooth finish. 200 ml bottle. Government Issued ID Required for Purchase. You must be 21 years of age or older to purchase this product.
 ```
-| **link** | `https://sanders-peach.vercel.app/product.html?sku=SL-10001` |
-| **image link** | `https://placehold.jp/2d1810/c9a227/600x600.png?text=Sanders+Select+Bourbon+750ml` |
-| **price** | `42.99 USD` |
-| **availability** | `in stock` |
-| **condition** | `new` |
-| **brand** | `Sanders Liquor` |
-| **identifier exists** | `no` (unless you add a real **GTIN** in JSON and in GMC) |
 
 **Channel / program:** If you use **local inventory**, keep your existing local settings; the **link** still helps Google match the landing page.
 
-**Better approval odds:** Replace the placeholder **image link** with a real **HTTPS** photo of the bottle (same URL on the website in `products.json` and in GMC).
-
 ## Merchant Center product links
 
-Use the same SKU as in `data/products.json`:
+Current product URL (matches `sku` in `data/products.json`):
 
-`https://sanders-peach.vercel.app/product.html?sku=SL-10001`
+`https://sanders-peach.vercel.app/product.html?sku=JAMESON-IRISH-WHISKEY-200ML`
 
 ## Local preview
 

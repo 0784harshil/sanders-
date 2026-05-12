@@ -1,16 +1,16 @@
 [
   {
-    "sku": "SL-10001",
-    "gmc_offer_id": "SL-10001",
-    "link": "https://sanders-peach.vercel.app/product.html?sku=SL-10001",
-    "title": "Sanders Select Bourbon 750ml",
-    "description": "750ml bottle of Sanders Select Bourbon sold at Sanders Liquor. Price, image, and availability on this page match our Google Merchant Center listing. Government warning: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems. Must be 21 or older; valid ID required at pickup.",
-    "price": "42.99",
+    "sku": "JAMESON-IRISH-WHISKEY-200ML",
+    "gmc_offer_id": "JAMESON-IRISH-WHISKEY-200ML",
+    "link": "https://sanders-peach.vercel.app/product.html?sku=JAMESON-IRISH-WHISKEY-200ML",
+    "title": "Jameson Irish Whiskey 200 ml",
+    "description": "The nose highlights a mellow pot whiskey with toasted wood and sherry undertones. The taste is smooth and sweet with mild, woody and nutty notes, with an incredibly smooth finish. 200 ml bottle. Government Issued ID Required for Purchase. You must be 21 years of age or older to purchase this product.",
+    "price": "9.99",
     "currency": "USD",
     "availability": "in stock",
     "condition": "new",
-    "image": "https://placehold.jp/2d1810/c9a227/600x600.png?text=Sanders+Select+Bourbon+750ml",
-    "brand": "Sanders Liquor",
+    "image": "https://sanders-peach.vercel.app/images/jameson-irish-whiskey-200ml.png",
+    "brand": "Jameson",
     "gtin": null
   }
 ]
