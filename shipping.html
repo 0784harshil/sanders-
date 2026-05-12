@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shipping &amp; delivery</title>
+  <meta name="description" content="Shipping regions, rates, and delivery timeframes." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html"><span data-site="business_name">Your Store Name</span></a>
+      <div class="nav-links">
+        <a href="products.html">Products</a>
+        <a href="shipping.html">Shipping</a>
+        <a href="returns.html">Returns</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="policy-page">
+    <h1>Shipping &amp; delivery</h1>
+    <div class="policy-prose">
+      <p>
+        <strong>Regions we ship to:</strong> Primarily <span data-site="address_country">US</span>
+        (edit <code>data/site.json</code> and this sentence for your real coverage).
+      </p>
+      <p>
+        <strong>Processing time:</strong> Orders are typically processed within the handling window described on each product’s structured data
+        (defaults are configured under <code>shipping_details</code> in <code>data/site.json</code> — align these numbers with what you submit in Merchant Center shipping settings).
+      </p>
+      <p>
+        <strong>Shipping rates:</strong> Describe your actual rates (flat, carrier-calculated, free over $X, etc.). The placeholder structured data uses a $0 shipping rate example — update both this text and <code>site.json</code> so they match reality.
+      </p>
+      <p>
+        <strong>Delivery time:</strong> Transit estimates should match carrier experience for each service level you sell.
+      </p>
+      <p class="meta">
+        Google cross-checks shipping and return information across your site, feed, and checkout when applicable. Keep them consistent.
+      </p>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <nav class="footer-links">
+      <a href="returns.html">Returns</a>
+      <a href="terms.html">Terms</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <p class="footer-copy">© <span class="js-year"></span> <span data-site="legal_business_name">Legal name</span></p>
+  </footer>
+  <script src="js/common.js"></script>
+  <script src="js/layout.js"></script>
+</body>
+</html>

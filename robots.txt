@@ -1,0 +1,13 @@
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Extended
+Allow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://0784harshil.github.io/sanders-/sitemap.xml

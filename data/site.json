@@ -1,0 +1,27 @@
+{
+  "canonical_origin": "https://0784harshil.github.io/sanders-",
+  "business_name": "Sanders Liquor",
+  "legal_business_name": "Sanders Liquor LLC",
+  "google_site_verification": "",
+  "logo_url": "https://0784harshil.github.io/sanders-/images/logo.svg",
+  "telephone": "+1-555-010-0199",
+  "email": "hello@sandersliquor.example",
+  "street_address": "Replace with verified storefront address",
+  "address_locality": "Your City",
+  "address_region": "ST",
+  "postal_code": "00000",
+  "address_country": "US",
+  "sameAs": [],
+  "business_description": "Sanders Liquor offers a curated selection of spirits, wine, and beer for pickup and local delivery where permitted. Prices and availability on this site match our Google Merchant Center catalog — please verify legal drinking age at pickup.",
+  "return_policy_days": 30,
+  "currency": "USD",
+  "shipping_details": {
+    "shipping_rate_value": "0",
+    "shipping_rate_currency": "USD",
+    "destination_country": "US",
+    "handling_min_days": 1,
+    "handling_max_days": 2,
+    "transit_min_days": 3,
+    "transit_max_days": 7
+  }
+}

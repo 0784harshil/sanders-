@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Products — catalog</title>
+  <meta name="description" content="Browse products. Each item links to a crawlable detail page for Google Merchant Center." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="index.html"><span data-site="business_name">Your Store Name</span></a>
+      <div class="nav-links">
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="shipping.html">Shipping</a>
+        <a href="returns.html">Returns</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Products</h1>
+    <p class="meta intro-line">
+      Use the same product URLs in Merchant Center as the <strong>link</strong> attribute (example:
+      <code>product.html?sku=YOUR_SKU</code> on your domain).
+    </p>
+    <div id="catalog" class="grid" aria-live="polite"></div>
+    <p id="catalog-error" class="meta" hidden>Could not load <code>data/products.json</code>. Confirm it is deployed next to this page.</p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <strong><span data-site="business_name">Your Store Name</span></strong>
+      </div>
+      <nav class="footer-links" aria-label="Policies">
+        <a href="shipping.html">Shipping</a>
+        <a href="returns.html">Returns</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </div>
+    <p class="footer-copy">© <span class="js-year"></span> <span data-site="legal_business_name">Legal name</span></p>
+  </footer>
+  <script src="js/common.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/layout.js"></script>
+</body>
+</html>
