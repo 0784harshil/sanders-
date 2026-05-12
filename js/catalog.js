@@ -8,7 +8,7 @@
     return d.innerHTML;
   }
 
-  fetch('data/products.json')
+  fetch('/data/products.json')
     .then(function (r) {
       if (!r.ok) throw new Error('bad response');
       return r.json();
@@ -16,7 +16,7 @@
     .then(function (items) {
       catalog.innerHTML = items
         .map(function (p) {
-          var href = 'product.html?sku=' + encodeURIComponent(p.sku);
+          var href = '/product.html?sku=' + encodeURIComponent(p.sku);
           return (
             '<article class="card">' +
             '<a href="' + href + '">' +

@@ -13,7 +13,7 @@
 
   if (!sku) {
     root.innerHTML =
-      '<p class="meta">Open a product from the <a href="products.html">catalog</a>.</p>';
+      '<p class="meta">Open a product from the <a href="/products.html">catalog</a>.</p>';
     return;
   }
 
@@ -50,7 +50,7 @@
 
   Promise.all([
     MC.fetchSite(),
-    fetch('data/products.json').then(function (r) {
+    fetch('/data/products.json').then(function (r) {
       if (!r.ok) throw new Error('products');
       return r.json();
     })
@@ -69,7 +69,7 @@
 
       MC.injectVerificationMeta(site);
 
-      var canonical = MC.absoluteUrl(site, 'product.html?sku=' + encodeURIComponent(p.sku));
+      var canonical = MC.absoluteUrl(site, '/product.html?sku=' + encodeURIComponent(p.sku));
       MC.setCanonical(canonical);
       metaDesc.setAttribute('content', p.description);
       document.title = p.title + ' — ' + site.business_name;
@@ -82,7 +82,7 @@
         type: 'product'
       });
 
-      var returnsUrl = MC.absoluteUrl(site, 'returns.html');
+      var returnsUrl = MC.absoluteUrl(site, '/returns.html');
       var origin = site.canonical_origin.replace(/\/$/, '');
 
       var offer = {
@@ -133,13 +133,13 @@
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: MC.absoluteUrl(site, 'index.html')
+            item: MC.absoluteUrl(site, '/')
           },
           {
             '@type': 'ListItem',
             position: 2,
             name: 'Products',
-            item: MC.absoluteUrl(site, 'products.html')
+            item: MC.absoluteUrl(site, '/products.html')
           },
           {
             '@type': 'ListItem',
@@ -182,7 +182,7 @@
         '<p class="meta"><a href="' +
         MC.esc(returnsUrl) +
         '">Return policy</a> · <a href="' +
-        MC.esc(MC.absoluteUrl(site, 'shipping.html')) +
+        MC.esc(MC.absoluteUrl(site, '/shipping.html')) +
         '">Shipping information</a></p>' +
         '</div></div>';
 

@@ -1,33 +1,23 @@
 # Sanders Liquor — public catalog site
 
-Static storefront used with **Google Merchant Center**: crawlable product pages, **robots.txt**, **sitemap**, policies, and JSON-LD (see `js/home.js` and `js/product.js`).
+Deployed example: **[sanders-peach.vercel.app](https://sanders-peach.vercel.app/)**
 
-## Live site (after GitHub Pages is enabled)
+Static storefront for **Google Merchant Center**: crawlable product pages, **robots.txt**, **sitemap**, policies, and JSON-LD (`js/home.js`, `js/product.js`).
 
-Project Pages URL: **https://0784harshil.github.io/sanders-/**
+## Configuration
 
-If you use a **custom domain**, update `canonical_origin` and `logo_url` in **`data/site.json`**, and replace URLs in **`robots.txt`** and **`sitemap.xml`**.
+Update **`data/site.json`**:
 
-## Edit content
+- **`canonical_origin`** — must match the public site URL (no trailing slash), e.g. `https://sanders-peach.vercel.app`
+- **`logo_url`** — full HTTPS URL to `images/logo.svg` on that host
 
-| File | Purpose |
-|------|---------|
-| `data/site.json` | Business name, address, phone, verification token, shipping defaults |
-| `data/products.json` | SKU, title, price, availability, images — must match Merchant Center |
+Then align **`robots.txt`** and **`sitemap.xml`** with the same domain.
 
-## GitHub Pages setup
+## Merchant Center product links
 
-1. Repo → **Settings** → **Pages**
-2. **Source**: Deploy from branch **main**, folder **/ (root)**
-3. Save; wait a few minutes for **https://0784harshil.github.io/sanders-/** to serve
+Use the same SKU as in `data/products.json`:
 
-## Merchant Center
-
-Use product links like:
-
-`https://0784harshil.github.io/sanders-/product.html?sku=SL-10001`
-
-(SKU must match your feed and `products.json`.)
+`https://sanders-peach.vercel.app/product.html?sku=SL-10001`
 
 ## Local preview
 
@@ -37,4 +27,4 @@ python -m http.server 8080
 
 Open http://localhost:8080/
 
-Use Search Console’s **URL Inspection** tool on a product URL after deploy to confirm Google can crawl the page.
+After deploy, test in Search Console **URL Inspection** and the [Rich Results Test](https://search.google.com/test/rich-results).

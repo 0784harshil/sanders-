@@ -10,7 +10,7 @@
     },
 
     fetchSite: function () {
-      return fetch('data/site.json').then(function (r) {
+      return fetch('/data/site.json').then(function (r) {
         if (!r.ok) throw new Error('site.json');
         return r.json();
       });

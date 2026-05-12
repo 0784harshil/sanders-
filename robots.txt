@@ -10,4 +10,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://0784harshil.github.io/sanders-/sitemap.xml
+Sitemap: https://sanders-peach.vercel.app/sitemap.xml
