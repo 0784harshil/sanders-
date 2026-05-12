@@ -8,6 +8,18 @@
     return d.innerHTML;
   }
 
+  function productHref(p) {
+    if (p.link && /^https?:\/\//i.test(String(p.link).trim())) {
+      try {
+        var u = new URL(String(p.link).trim());
+        return u.pathname + u.search;
+      } catch (e) {
+        return '/product.html?sku=' + encodeURIComponent(p.sku);
+      }
+    }
+    return '/product.html?sku=' + encodeURIComponent(p.sku);
+  }
+
   fetch('/data/products.json')
     .then(function (r) {
       if (!r.ok) throw new Error('bad response');
@@ -16,7 +28,7 @@
     .then(function (items) {
       catalog.innerHTML = items
         .map(function (p) {
-          var href = '/product.html?sku=' + encodeURIComponent(p.sku);
+          var href = productHref(p);
           return (
             '<article class="card">' +
             '<a href="' + href + '">' +

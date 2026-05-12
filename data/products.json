@@ -1,22 +1,30 @@
 [
   {
     "sku": "SL-10001",
+    "gmc_offer_id": "SL-10001",
+    "link": "https://sanders-peach.vercel.app/product.html?sku=SL-10001",
     "title": "Sanders Select Bourbon 750ml",
     "description": "Premium small-batch bourbon carried at Sanders Liquor. Replace with your exact product description and ABV where required by law.",
     "price": "42.99",
     "currency": "USD",
     "availability": "in stock",
+    "condition": "new",
     "image": "https://placehold.jp/ccaa66/1a1510/600x600.png?text=Bourbon+750ml",
-    "brand": "Sanders Liquor"
+    "brand": "Sanders Liquor",
+    "gtin": null
   },
   {
     "sku": "SL-10002",
+    "gmc_offer_id": "SL-10002",
+    "link": "https://sanders-peach.vercel.app/product.html?sku=SL-10002",
     "title": "Sanders Cellars Cabernet 750ml",
     "description": "Dry red wine — availability and pricing shown match our in-store inventory feed. Update imagery with bottle photography provided by your supplier.",
     "price": "18.99",
     "currency": "USD",
     "availability": "in stock",
+    "condition": "new",
     "image": "https://placehold.jp/722f37/f5e6e8/600x600.png?text=Cabernet+750ml",
-    "brand": "Sanders Liquor"
+    "brand": "Sanders Liquor",
+    "gtin": null
   }
 ]

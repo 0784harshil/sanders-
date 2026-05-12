@@ -63,13 +63,29 @@
       var site = tuple[0];
       var items = tuple[1];
       var p = items.find(function (x) {
-        return String(x.sku) === String(sku);
+        return (
+          String(x.sku) === String(sku) ||
+          String(x.gmc_offer_id || '') === String(sku)
+        );
       });
 
       if (!p) {
         root.innerHTML = '<p class="meta">Product not found for this SKU.</p>';
         return;
       }
+
+      function conditionSchema(c) {
+        var x = String(c || 'new').toLowerCase();
+        if (x === 'used') return 'https://schema.org/UsedCondition';
+        if (x === 'refurbished') return 'https://schema.org/RefurbishedCondition';
+        return 'https://schema.org/NewCondition';
+      }
+
+      var offerId = p.gmc_offer_id || p.sku;
+      var canonical =
+        p.link && String(p.link).trim()
+          ? String(p.link).trim()
+          : MC.absoluteUrl(site, '/product.html?sku=' + encodeURIComponent(p.sku));
 
       var returnsUrl = MC.absoluteUrl(site, '/returns.html');
 
@@ -98,8 +114,8 @@
         '<div class="policy-prose"><p>' +
         MC.esc(p.description) +
         '</p></div>' +
-        '<p class="meta">Offer ID / SKU: <code>' +
-        MC.esc(p.sku) +
+        '<p class="meta">Offer ID / SKU (match Merchant Center): <code>' +
+        MC.esc(offerId) +
         '</code></p>' +
         '<p class="meta"><a href="' +
         MC.esc(returnsUrl) +
@@ -111,7 +127,6 @@
 
       MC.injectVerificationMeta(site);
 
-      var canonical = MC.absoluteUrl(site, '/product.html?sku=' + encodeURIComponent(p.sku));
       MC.setCanonical(canonical);
       if (metaDesc) metaDesc.setAttribute('content', p.description);
       document.title = p.title + ' — ' + site.business_name;
@@ -134,7 +149,7 @@
         price: p.price,
         priceCurrency: p.currency || site.currency || 'USD',
         availability: MC.availabilityToSchema(p.availability),
-        itemCondition: 'https://schema.org/NewCondition',
+        itemCondition: conditionSchema(p.condition),
         priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1))
           .toISOString()
           .slice(0, 10),
@@ -158,13 +173,16 @@
       var productLd = {
         '@context': 'https://schema.org',
         '@type': 'Product',
-        sku: p.sku,
+        sku: offerId,
         name: p.title,
         description: p.description,
         image: [p.image],
         brand: { '@type': 'Brand', name: p.brand },
         offers: offer
       };
+      if (p.gtin && String(p.gtin).replace(/\D/g, '').length >= 8) {
+        productLd.gtin = String(p.gtin).replace(/\s/g, '');
+      }
 
       try {
         MC.injectJsonLd('ld-product', productLd);
