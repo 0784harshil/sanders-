@@ -89,6 +89,28 @@
 
       var returnsUrl = MC.absoluteUrl(site, '/returns.html');
 
+      var availLower = String(p.availability || '').toLowerCase();
+      var inStock =
+        availLower.indexOf('out of') === -1 &&
+        availLower.indexOf('out_of') === -1 &&
+        availLower.indexOf('sold out') === -1;
+
+      var buyBlock = '';
+      if (inStock) {
+        buyBlock =
+          '<div class="buy-row" role="group" aria-label="Purchase">' +
+          '<button type="button" class="btn btn-primary" id="btn-add-cart">Add to cart</button>' +
+          '<a class="btn btn-secondary" href="/checkout.html#add=' +
+          encodeURIComponent(p.sku) +
+          '">Buy now</a>' +
+          '<a class="btn btn-ghost" href="/cart.html">View cart</a>' +
+          '</div>' +
+          '<p class="buy-note">Checkout collects your details so we can confirm payment and pickup or delivery. Valid ID required for alcohol (21+).</p>';
+      } else {
+        buyBlock =
+          '<p class="meta"><strong>Currently unavailable</strong> — this item cannot be added to cart.</p>';
+      }
+
       root.innerHTML =
         '<div class="layout">' +
         '<div><img src="' +
@@ -111,6 +133,7 @@
         '<p class="meta">Brand: <strong>' +
         MC.esc(p.brand) +
         '</strong></p>' +
+        buyBlock +
         '<div class="policy-prose"><p>' +
         MC.esc(p.description) +
         '</p></div>' +
@@ -124,6 +147,22 @@
         '">Shipping information</a></p>' +
         '</div></div>';
       root.setAttribute('data-loaded', '1');
+
+      if (inStock && window.StoreCart) {
+        var addBtn = document.getElementById('btn-add-cart');
+        if (addBtn) {
+          addBtn.addEventListener('click', function () {
+            window.StoreCart.addFromProduct(p, 1);
+            addBtn.textContent = 'Added ✓';
+            window.setTimeout(function () {
+              addBtn.textContent = 'Add to cart';
+            }, 1600);
+            try {
+              window.dispatchEvent(new CustomEvent('sanders-cart-updated'));
+            } catch (e0) {}
+          });
+        }
+      }
 
       MC.injectVerificationMeta(site);
 

@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Product</title>
-  <meta id="meta-desc" name="description" content="Product details for Google Merchant Center." />
+  <title>Order confirmed</title>
+  <meta name="description" content="Your order was received." />
   <link rel="stylesheet" href="/css/styles.css" />
+  <meta name="robots" content="noindex" />
 </head>
 <body>
   <header>
@@ -13,37 +14,21 @@
       <a class="brand" href="/"><span data-site="business_name">Sanders Liquor</span></a>
       <div class="nav-links">
         <a href="/products.html">Products</a>
-        <a href="/about.html">About</a>
-        <a href="/shipping.html">Shipping</a>
-        <a href="/returns.html">Returns</a>
         <a href="/contact.html">Contact</a>
       </div>
     </nav>
   </header>
 
-  <main class="product-detail">
-    <p class="crumb"><a href="/products.html">← All products</a></p>
-    <div id="root">
-      <p class="meta">Loading product…</p>
-    </div>
+  <main>
+    <div id="order-root"></div>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-grid">
-      <div>
-        <strong><span data-site="business_name">Sanders Liquor</span></strong>
-      </div>
-      <nav class="footer-links" aria-label="Policies">
-        <a href="/returns.html">Returns</a>
-        <a href="/shipping.html">Shipping</a>
-        <a href="/terms.html">Terms</a>
-      </nav>
-    </div>
     <p class="footer-copy">© <span class="js-year"></span> <span data-site="legal_business_name">Sanders Liquor LLC</span></p>
   </footer>
   <script src="/js/common.js"></script>
   <script src="/js/cart.js"></script>
-  <script src="/js/product.js"></script>
+  <script src="/js/order-complete.js"></script>
   <script src="/js/layout.js"></script>
 </body>
 </html>

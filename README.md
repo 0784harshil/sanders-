@@ -4,6 +4,8 @@ Deployed example: **[sanders-peach.vercel.app](https://sanders-peach.vercel.app/
 
 Static storefront for **Google Merchant Center**: crawlable product pages, **robots.txt**, **sitemap**, policies, and JSON-LD (`js/home.js`, `js/product.js`).
 
+**Checkout:** Product pages include **Add to cart**, **Buy now** (deep-link to `checkout.html#add=SKU`), and **View cart**. Shoppers complete **Checkout** → **Complete purchase** → **Order confirmed** (cart uses `localStorage`; confirmation uses `sessionStorage` for that session). Align this flow with how you actually take payment (e.g. pay at pickup / phone).
+
 ## Configuration
 
 Update **`data/site.json`**:
